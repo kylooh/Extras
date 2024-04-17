@@ -15,6 +15,7 @@
     },
     "extract_dir": "OpenVPN Connect",
     "pre_install": [
+        "if (!(is_admin)) {error \"$app requires admin rights to $cmd\"; break}",
         "# OpenVPN Connect cannot work under junctions ('current'), therefore we need to manually create the shortcut",
         "$scoop_startmenu_folder = Join-Path $([Environment]::GetFolderPath($(if ($global) {'commonstartmenu'} else {'startmenu'}))) 'Programs\\Scoop Apps'",
         "$exe_dir = versiondir 'openvpn-connect' $version",
